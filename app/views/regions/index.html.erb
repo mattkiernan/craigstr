@@ -1,14 +1,18 @@
 <h2>Regions</h2>
 
-<%= link_to "Create a new region", new_region_path %>
+<% if current_user.admin? %>
+  <%= link_to "Create a new region", new_region_path %>
+<% end %>
 
 <div>
   <ul>
     <% @regions.each do |region| %>
       <li>
-        <%= link_to region.name, region_path(region) %> - 
-        <%= link_to "Edit", edit_region_path(region) %> - 
-        <%= link_to "Delete", region_path(region), method: :delete %>
+        <%= link_to region.name, region_path(region) %> -
+        <% if current_user.admin? %>
+          <%= link_to "Edit", edit_region_path(region) %> -
+          <%= link_to "Delete", region_path(region), method: :delete %>
+        <% end %>
       </li>
     <% end %>
   </ul>

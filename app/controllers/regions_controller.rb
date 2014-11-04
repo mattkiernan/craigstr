@@ -1,4 +1,6 @@
 class RegionsController < ApplicationController
+  skip_before_action :require_admin, only: [:index, :show]
+
   def index
     @regions = Region.all
   end
