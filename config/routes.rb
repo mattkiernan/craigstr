@@ -5,7 +5,5 @@ Rails.application.routes.draw do
   resources :regions do
     resources :categories, only: [:show]
   end
-  
-
   root "regions#index"
 end
