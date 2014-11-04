@@ -1,1 +1,8 @@
-<h2> Showing posts for the <%= @region.name %> area </h2>
+<h2><%= @region.name %> Categories</h2>
+
+<ul>
+  <% @categories.each do |category| %>
+    <li><%= category.name %></li>
+  <% end %>
+</ul>
+
