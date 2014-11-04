@@ -1,8 +1,12 @@
 <h2><%= @region.name %> Categories</h2>
 
+<% if current_user.admin? %>
+  <%= link_to "Create a new category", new_region_category_path(@region) %>
+<% end %>
+
 <ul>
   <% @categories.each do |category| %>
-    <li><%= category.name %></li>
+    <li><%= link_to category.name, region_category_path(@region, category) %></li>
   <% end %>
 </ul>
 

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
 
   resources :regions do
-    resources :categories, only: [:show]
+    resources :categories, only: [:new, :create, :show]
   end
   root "regions#index"
 end
