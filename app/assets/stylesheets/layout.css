@@ -1,0 +1,12 @@
+.float-right{
+  float:right;
+  text-decoration:none;
+}
+
+.float-right ul{
+  list-style:none;
+}
+
+.float-right li{
+  display:inline-block;
+}
