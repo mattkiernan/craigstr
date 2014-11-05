@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create]
   skip_before_action :require_admin, only: [:new, :create]
 
   def edit
@@ -21,7 +20,6 @@ class CategoriesController < ApplicationController
     category.destroy
 
     redirect_to region_path(params[:region_id])
-
   end
 
   private
