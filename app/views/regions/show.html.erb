@@ -5,12 +5,5 @@
 <% end %>
 
 <ul>
-  <% @categories.each do |category| %>
-    <li><%= link_to category.name, region_category_path(@region, category) %>
-    <% if current_user.admin? %>
-      <%= link_to "Edit", edit_region_category_path(@region, category) %> -
-      <%= button_to "Delete", region_category_path(@region, category), method: :delete %>
-    <% end %>
-    </li>
-  <% end %>
+  <%= render @categories, region: @region %>
 </ul>
