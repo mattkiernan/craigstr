@@ -19,6 +19,7 @@ class CategoriesController < ApplicationController
   def show
     @region = load_region_from_url
     @category = load_category_from_url
+    @posts = @category.posts
   end
 
   def edit
@@ -27,11 +28,11 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    region = load_region_from_url
-    category = load_category_from_url
+    @region = load_region_from_url
+    @category = load_category_from_url
 
-    if category.update(category_params)
-      redirect_to region
+    if @category.update(category_params)
+      redirect_to @region
     else
       render :edit
     end
