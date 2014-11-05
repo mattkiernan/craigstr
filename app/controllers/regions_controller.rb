@@ -19,17 +19,17 @@ class RegionsController < ApplicationController
   end
 
   def show
-    @region = Region.find(params[:id])
+    @region = load_region_from_url
     @categories = @region.categories
   end
 
   def edit
-    @region = Region.find(params[:id])
+    @region = load_region_from_url
   end
 
   def update
-    @region = Region.find(params[:id])
-    if @region.update(region_params)
+    region = load_region_from_url
+    if region.update(region_params)
       redirect_to root_path
     else
       render :edit
@@ -37,13 +37,17 @@ class RegionsController < ApplicationController
   end
 
   def destroy
-    region = Region.find(params[:id])
+    region = load_region_from_url
     region.destroy
 
     redirect_to root_path
   end
 
   private
+
+  def load_region_from_url
+    Region.find(params[:id])
+  end
 
   def region_params
     params.require(:region).permit(:name)

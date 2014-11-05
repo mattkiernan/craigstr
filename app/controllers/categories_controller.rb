@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
     @region = load_region_from_url
     @category = @region.categories.new(category_params)
     if @category.save
-      redirect_to region_path(@region)
+      redirect_to @region
     else
       render :new
     end
@@ -27,22 +27,22 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @region = load_region_from_url
-    @category = load_category_from_url
+    region = load_region_from_url
+    category = load_category_from_url
 
-    if @category.update(category_params)
-      redirect_to region_path(load_region_from_url)
+    if category.update(category_params)
+      redirect_to region
     else
       render :edit
     end
   end
 
   def destroy
-    @region = load_region_from_url
-    @category = load_category_from_url
-    @category.destroy
+    region = load_region_from_url
+    category = load_category_from_url
+    category.destroy
 
-    redirect_to region_path(load_region_from_url)
+    redirect_to region
   end
 
   private
