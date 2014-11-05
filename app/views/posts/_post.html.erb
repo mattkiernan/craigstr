@@ -1,11 +1,7 @@
-<ul>
-  <% @posts.each do |post| %>
-    <li>
-      <%= link_to post.title, category_post_path(@category, post) %> - <%= time_ago_in_words(post.created_at) %> ago - <%= post.user.email %>
-      <% if current_user.admin? %>
-        <%= link_to "Edit", edit_category_post_path(@category, post) %> -
-        <%= button_to "Delete", category_post_path(@category, post), method: :delete %>
-      <% end %>
-    </li>
+<li>
+  <%= link_to post.title, category_post_path(category, post) %> - <%= time_ago_in_words(post.created_at) %> ago - <%= post.user.email %>
+  <% if current_user.admin? %>
+    <%= link_to "Edit", edit_category_post_path(category, post) %> -
+    <%= button_to "Delete", category_post_path(category, post), method: :delete %>
   <% end %>
-</ul>
+</li>
