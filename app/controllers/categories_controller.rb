@@ -2,12 +2,12 @@ class CategoriesController < ApplicationController
   skip_before_action :require_admin, only: [:show]
 
   def new
-    @region = Region.find(params[:region_id])
+    @region = load_region_from_url
     @category = @region.categories.new
   end
 
   def create
-    @region = Region.find(params[:region_id])
+    @region = load_region_from_url
     @category = @region.categories.new(category_params)
     if @category.save
       redirect_to region_path(@region)
@@ -17,37 +17,46 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @region = Region.find(params[:region_id])
-    @category = @region.categories.find(params[:id])
+    @region = load_region_from_url
+    @category = load_category_from_url
   end
 
   def edit
-    @region = Region.find(params[:region_id])
-    @category = @region.categories.find(params[:id])
+    @region = load_region_from_url
+    @category = load_category_from_url
   end
 
   def update
-    @region = Region.find(params[:region_id])
-    @category = @region.categories.find(params[:id])
+    @region = load_region_from_url
+    @category = load_category_from_url
 
     if @category.update(category_params)
-      redirect_to region_path(params[:region_id])
+      redirect_to region_path(load_region_from_url)
     else
       render :edit
     end
   end
 
   def destroy
-    @region = Region.find(params[:region_id])
-    @category = @region.categories.find(params[:id])
+    @region = load_region_from_url
+    @category = load_category_from_url
     @category.destroy
 
-    redirect_to region_path(params[:region_id])
+    redirect_to region_path(load_region_from_url)
   end
 
   private
 
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def load_region_from_url
+    Region.find(params[:region_id])
+  end
+
+  def load_category_from_url
+    region = load_region_from_url
+    region.categories.find(params[:id])
   end
 end
