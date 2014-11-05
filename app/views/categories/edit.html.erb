@@ -1,0 +1,7 @@
+<h2>Edit a new category</h2>
+
+<%= form_for [@region, @category] do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.submit %>
+<% end %>
