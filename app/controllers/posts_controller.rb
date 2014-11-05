@@ -9,10 +9,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    category = load_category_from_url
-    post = category.posts.new(post_params)
-    if post.save
-      redirect_to [category, post]
+    @category = load_category_from_url
+    @post = @category.posts.new(post_params)
+    if @post.save
+      redirect_to [@category, @post]
     else
       render :new
     end
