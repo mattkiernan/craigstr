@@ -1,6 +1,4 @@
 class CategoriesController < ApplicationController
-  skip_before_action :require_admin, only: [:new, :create]
-
   def edit
     @category = Category.find(params[:id])
   end
