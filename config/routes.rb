@@ -6,5 +6,10 @@ Rails.application.routes.draw do
     resources :categories, only: [:new, :create, :show, :edit, :update,
                                   :destroy]
   end
+
+  resources :categories do
+    resources :posts, only: [:new, :create, :show, :edit, :update, :destroy]
+  end
+
   root "regions#index"
 end

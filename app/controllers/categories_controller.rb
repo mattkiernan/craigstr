@@ -7,10 +7,10 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @region = load_region_from_url
-    @category = @region.categories.new(category_params)
-    if @category.save
-      redirect_to @region
+    region = load_region_from_url
+    category = region.categories.new(category_params)
+    if category.save
+      redirect_to region
     else
       render :new
     end
@@ -19,6 +19,7 @@ class CategoriesController < ApplicationController
   def show
     @region = load_region_from_url
     @category = load_category_from_url
+    @posts = @category.posts
   end
 
   def edit
