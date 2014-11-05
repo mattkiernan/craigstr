@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 
   def load_post_from_url
     category = load_category_from_url
-    category.posts.find(params[:id]) 
+    category.posts.find(params[:id])
   end
 
   def post_params
