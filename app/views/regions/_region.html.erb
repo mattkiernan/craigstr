@@ -1,7 +1,7 @@
 <li>
-  <%= link_to region.name, region_path(region) %> -
+  <%= link_to region.name, region %> -
   <% if current_user.admin? %>
     <%= link_to "Edit", edit_region_path(region) %> -
-    <%= button_to "Delete", region_path(region), method: :delete %>
+    <%= button_to "Delete", region, method: :delete %>
   <% end %>
 </li>
