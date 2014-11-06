@@ -1,8 +1,4 @@
 class PostsController < ApplicationController
-  def show
-    @post = load_post_from_url
-  end
-
   def new
     @category = load_category_from_url
     @post = @category.posts.new
@@ -16,6 +12,33 @@ class PostsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @post = load_post_from_url
+  end
+
+  def edit
+    @category = load_category_from_url
+    @post = load_post_from_url
+  end
+
+  def update
+    @category = load_category_from_url
+    @post = load_post_from_url
+    if @post.update(post_params)
+      redirect_to [@category, @post]
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    category = load_category_from_url
+    post = load_post_from_url
+    post.destroy
+
+    redirect_to [category.region, category]
   end
 
   private
