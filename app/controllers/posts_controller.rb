@@ -21,26 +21,24 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @category = load_category_from_url
     @post = load_post_from_url
+    @region = @post.region
   end
 
   def update
-    @category = load_category_from_url
     @post = load_post_from_url
     if @post.update(post_params)
-      redirect_to [@category, @post]
+      redirect_to [@post.region, @post]
     else
       render :edit
     end
   end
 
   def destroy
-    category = load_category_from_url
     post = load_post_from_url
     post.destroy
 
-    redirect_to [category.region, category]
+    redirect_to post.region
   end
 
   private

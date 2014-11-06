@@ -4,7 +4,11 @@
   <%= link_to "Create a new category", new_region_category_path(@region) %>
 <% end %>
 <%= link_to "Create a new post", new_region_post_path(@region) %>
-
+<h2>Categories</h2>
 <ul>
   <%= render @categories, region: @region %>
+</ul>
+<h2>Posts</h2>
+<ul>
+  <%= render @region.posts %>
 </ul>
