@@ -9,7 +9,7 @@
 <body>
   <h1> <%= link_to "Craigstr", root_path %> </h1>
 
-  <div class="float-right">
+  <div class="session">
     <ul>
       <% if signed_in? %>
         <li><%= current_user.email %></li>
