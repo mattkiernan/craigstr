@@ -1,7 +1,7 @@
 <li>
-  <%= link_to post.title, [post.category, post] %> - <%= time_ago_in_words(post.created_at) %> ago - <%= post.user.email %>
+  <%= link_to post.title, [post.region, post] %> - <%= time_ago_in_words(post.created_at) %> ago - <%= post.user.email %>
   <% if current_user.admin? %>
-    <%= link_to "Edit", edit_category_post_path(post.category, post) %> -
-    <%= button_to "Delete", [post.category, post], method: :delete %>
+    <%= link_to "Edit", edit_region_post_path(post.region, post) %>
+    <%= button_to "Delete", [post.region, post], method: :delete %>
   <% end %>
 </li>
