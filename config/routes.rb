@@ -3,12 +3,11 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
 
   resources :regions do
-    resources :categories, only: [:new, :create, :show, :edit, :update,
-                                  :destroy]
+    resources :categories, except: [:index]
   end
 
-  resources :categories do
-    resources :posts, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :categories, only: [] do
+    resources :posts, except: [:index]
   end
 
   root "regions#index"
