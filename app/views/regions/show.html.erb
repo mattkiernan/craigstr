@@ -3,6 +3,7 @@
 <% if current_user.admin? %>
   <%= link_to "Create a new category", new_region_category_path(@region) %>
 <% end %>
+<%= link_to "Create a new post", new_region_post_path(@region) %>
 
 <ul>
   <%= render @categories, region: @region %>

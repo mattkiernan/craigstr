@@ -4,9 +4,6 @@ Rails.application.routes.draw do
 
   resources :regions do
     resources :categories, except: [:index]
-  end
-
-  resources :categories, only: [] do
     resources :posts, except: [:index]
   end
 
