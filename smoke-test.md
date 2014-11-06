@@ -24,4 +24,10 @@ show page.
 If a user creates a post, the user should be redirected to the new post show
 page.
 
+If a user edits a post, the user should be redirected to the updated
+post show page.
+
+If a user deletes a post, the user should be redirected to the updated
+category show page. The post should not appear.
+
 If a user clicks on a post, the user should be redirected to the post show page.
