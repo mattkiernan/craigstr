@@ -31,3 +31,6 @@ If a user deletes a post, the user should be redirected to the updated
 category show page. The post should not appear.
 
 If a user clicks on a post, the user should be redirected to the post show page.
+
+If a user selects a category for their post, the post should show the category
+on the post show page AND the post should appear on the category's show page.
