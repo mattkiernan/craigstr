@@ -1,4 +1,4 @@
-<h2><%= @region.name %> Categories</h2>
+<h2><%= @region.name %></h2>
 
 <% if current_user.admin? %>
   <%= link_to "Create a new category", new_region_category_path(@region) %>
@@ -8,7 +8,7 @@
 <ul>
   <%= render @categories, region: @region %>
 </ul>
-<h2>Posts</h2>
+<h4>Posts</h4>
 <ul>
   <%= render @region.posts %>
 </ul>

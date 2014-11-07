@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
   def new
     @region = load_region_from_url
-    @post = @region.posts.new
     @categories = @region.categories
+    @post = @region.posts.new
   end
 
   def create
-    region = load_region_from_url
-    @post = region.posts.new(post_params)
+    @region = load_region_from_url
+    @post = @region.posts.new(post_params)
     if @post.save
-      redirect_to [region, @post]
+      redirect_to [@region, @post]
     else
       render :new
     end
@@ -21,24 +21,26 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @region = load_region_from_url
     @post = load_post_from_url
-    @region = @post.region
   end
 
   def update
+    @region = load_region_from_url
     @post = load_post_from_url
     if @post.update(post_params)
-      redirect_to [@post.region, @post]
+      redirect_to [@region, @post]
     else
       render :edit
     end
   end
 
   def destroy
+    region = load_region_from_url
     post = load_post_from_url
     post.destroy
 
-    redirect_to post.region
+    redirect_to region
   end
 
   private
@@ -53,6 +55,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, category_ids: []).merge(user_id: current_user.id)
+    params.require(:post).permit(:title, :body, category_ids: [])
+      .merge(user_id: current_user.id)
   end
 end
